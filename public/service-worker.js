@@ -11,8 +11,7 @@ const FILES_TO_CACHE = [
   
   const STATIC_CACHE = "static-cache-v2";
   const DATA_CACHE = "data-cache-v1";
-  
-  // install
+  //---install
   self.addEventListener("install",(event) => {
   event.waitUntil(
     caches.open(STATIC_CACHE).then(cache => {
@@ -21,8 +20,7 @@ const FILES_TO_CACHE = [
     })
   );
   });
-  
-  // activate
+  //---activate
   self.addEventListener("activate",(event) => {
   event.waitUntil(
     caches.keys().then(keyList => {
@@ -36,11 +34,9 @@ const FILES_TO_CACHE = [
       );
     })
   );
-  
   self.clients.claim();
   });
-  
-  // fetch
+  //---fetch
   self.addEventListener("fetch", (event) => {
     event.respondWith(
       caches.match(event.request).then((r) => {
